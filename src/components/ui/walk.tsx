@@ -16,6 +16,17 @@ const BACKGROUNDS = [
 export function Walk() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // 預載入所有背景圖片
+  useEffect(() => {
+    const preloadImages = () => {
+      BACKGROUNDS.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    };
+    preloadImages();
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BACKGROUNDS.length);
