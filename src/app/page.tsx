@@ -1,26 +1,22 @@
 import { Flex } from "@chakra-ui/react";
-import { Header } from "@/components/layout/Header";
-import { Hero } from "@/components/sections/Hero";
-// import { Characters } from "@/components/sections/Characters";
-// import { Pillars } from "@/components/sections/Pillars";
-// import { Gallery } from "@/components/sections/Gallery";
-// import { GameplayLoop } from "@/components/sections/GameplayLoop";
-// import { Roadmap } from "@/components/sections/Roadmap";
-// import { FollowCTA } from "@/components/sections/FollowCTA";
-// import { Footer } from "@/components/layout/Footer";
+import { LayoutLeft } from "@/components/layout/LayoutLeft";
+import { LayoutRight } from "@/components/layout/LayoutRight";
 
 export default function Home() {
   return (
-    <Flex flexDirection="column" alignItems="center" bgColor="bg">
-      <Header />
-      <Hero />
-      {/* <Characters />
-      <Pillars />
-      <Gallery />
-      <GameplayLoop />
-      <Roadmap />
-      <FollowCTA />
-      <Footer /> */}
+    <Flex flexDirection="row" alignItems="center" bgColor="#F2F1E7">
+      <Flex
+        w="90%"
+        maxW="1440px"
+        mx="auto"
+        gap="60px"
+        pt="40px"
+        pb="40px"
+        direction={{ base: "column-reverse", lg: "row" }}
+      >
+        <LayoutLeft />
+        <LayoutRight />
+      </Flex>
     </Flex>
   );
 }

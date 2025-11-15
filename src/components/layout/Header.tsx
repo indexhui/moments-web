@@ -56,7 +56,7 @@ const HeaderCta = () => {
       bgColor="#977354"
     >
       <Link
-        href="https://forms.gle/CMGozFuDxoN7fNot7"
+        href="https://forms.gle/xiYyFgGEADZX7QjC7"
         target="_blank"
         rel="noopener noreferrer"
         w="full"
@@ -95,7 +95,7 @@ const SocialLinks = () => {
   return (
     <Flex gap={3}>
       <Link
-        href="https://www.threads.com/@mugio_studio?xmt=AQF02DIAlQ7wBCOVZ-VhMzDSEHaKmZHHx_JHAI31v419qAg"
+        href="https://www.threads.com/@mugio_studio"
         target="_blank"
         rel="noopener noreferrer"
         _focus={{ outline: "none" }}
