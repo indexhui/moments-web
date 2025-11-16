@@ -2,6 +2,7 @@
 
 import { Flex, Text, SimpleGrid, Container } from "@chakra-ui/react";
 import { TeamCard } from "@/components/ui/teamCard";
+import { Section } from "@/components/ui/section";
 
 const TEAM_MEMBERS = [
   {
@@ -38,29 +39,15 @@ const TEAM_MEMBERS = [
 
 export function Teams() {
   return (
-    <Flex
-      as="section"
+    <Section
       id="teams"
       py={16}
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="360px"
-      w="100%"
       justify="center"
       align="center"
       px="80px"
+      title="Teams"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-      >
-        Teams
-      </Text>
       <Container maxW="container.xl" w="100%">
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={6}>
           {TEAM_MEMBERS.map((member, index) => (
@@ -73,6 +60,6 @@ export function Teams() {
           ))}
         </SimpleGrid>
       </Container>
-    </Flex>
+    </Section>
   );
 }

@@ -3,34 +3,21 @@
 import { Flex, Text, SimpleGrid, Box } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { FaLeaf, FaHeart, FaStar } from "react-icons/fa6";
+import { Section } from "@/components/ui/section";
 
 export function Feature() {
   return (
-    <Flex
-      as="section"
+    <Section
       id="feature"
       py={16}
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="360px"
-      w="100%"
       justify="center"
       align="flex-start"
       direction="column"
       px="36px"
       gap="24px"
+      title="Feature"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-      >
-        Feature
-      </Text>
       <Text
         color="#72543B"
         as="h2"
@@ -63,7 +50,7 @@ export function Feature() {
           />
         </SimpleGrid>
       </Box>
-    </Flex>
+    </Section>
   );
 }
 

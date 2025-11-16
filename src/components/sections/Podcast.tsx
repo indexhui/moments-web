@@ -8,32 +8,19 @@ import {
   SimpleGrid,
   Container,
 } from "@chakra-ui/react";
+import { Section } from "@/components/ui/section";
 
 export function Podcast() {
   return (
-    <Flex
-      as="section"
+    <Section
       id="podcast"
       py={16}
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="360px"
-      w="100%"
       justify="center"
       align="center"
       px="80px"
+      title="Podcast"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-      >
-        Podcast
-      </Text>
       <Container maxW="container.xl" w="100%">
         <SimpleGrid columns={{ base: 1, md: 3 }} gap={6} w="100%">
           <Box w="100%">
@@ -83,6 +70,6 @@ export function Podcast() {
           </Box>
         </SimpleGrid>
       </Container>
-    </Flex>
+    </Section>
   );
 }

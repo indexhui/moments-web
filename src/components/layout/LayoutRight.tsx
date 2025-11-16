@@ -12,7 +12,7 @@ import { Flex } from "@chakra-ui/react";
 
 export function LayoutRight() {
   return (
-    <Flex flex="1" direction="column" gap="48px" h="100%">
+    <Flex flex="1" direction="column" gap="72px" h="100%">
       <Hero />
       <Introduce />
       <Feature />

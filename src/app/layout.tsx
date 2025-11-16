@@ -11,12 +11,12 @@ export const metadata: Metadata = {
       : "http://localhost:3000"
   ),
   title: {
-    default: "走走小日 moments - 一頁式官網",
+    default: "走走小日 moments - 陪妳一起過生活",
     template: "%s | 走走小日 moments",
   },
   description:
-    "走走小日 moments 是一款療癒系日常遊戲（尚未推出）。追蹤我們以獲得最新消息與釋出時間。",
-  keywords: ["走走小日", "moments", "Mugio Studio", "療癒", "日常遊戲"],
+    "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息與釋出時間。",
+  keywords: ["走走小日", "moments", "Mugio Studio", "通勤", "日常遊戲"],
   authors: [{ name: "Mugio Studio" }],
   creator: "Mugio Studio",
   publisher: "Mugio Studio",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://moments.mugio.studio",
     siteName: "走走小日 moments",
-    title: "走走小日 moments - 一頁式官網",
+    title: "走走小日 moments - 陪你一起過生活",
     description:
-      "走走小日 moments 是一款療癒系日常遊戲（尚未推出）。追蹤我們以獲得最新消息。",
+      "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息。",
     images: [
       {
         url: "/moments_og.jpg",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "走走小日 moments - 一頁式官網",
     description:
-      "走走小日 moments 是一款療癒系日常遊戲（尚未推出）。追蹤我們以獲得最新消息。",
+      "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息。",
     images: ["/moments_og.jpg"],
     creator: "@mugio_studio",
   },

@@ -1,33 +1,19 @@
 "use client";
 
 import { Flex, Text, Box, Button, Link } from "@chakra-ui/react";
+import { Section } from "@/components/ui/section";
 
 export function Stories() {
   return (
-    <Flex
-      as="section"
+    <Section
       id="stories"
       px="36px"
       py="48px"
-      w="100%"
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="220px"
       gap={8}
       align="stretch"
+      title="Share Your Story"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-      >
-        Share Your Story
-      </Text>
-
       <Flex
         direction="column"
         gap="16px"
@@ -86,6 +72,6 @@ export function Stories() {
           bgRepeat="no-repeat"
         />
       </Flex>
-    </Flex>
+    </Section>
   );
 }

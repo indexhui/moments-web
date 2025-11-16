@@ -91,7 +91,7 @@ export function LayoutLeft() {
           </Flex>
         </Link>
         <Link
-          href="https://forms.gle/gtKXj3iJbPKWQLmb8"
+          href="https://forms.gle/vJoxa77Gsj1MAT4h8"
           target="_blank"
           rel="noopener noreferrer"
           _hover={{ textDecoration: "none" }}
@@ -113,7 +113,7 @@ export function LayoutLeft() {
                 <FaClipboardList />
               </Icon>
             </Flex>
-            <Text color="#987455">填寫問卷</Text>
+            <Text color="#987455">故事募集</Text>
           </Flex>
         </Link>
         <Flex align="center" gap={2} direction="column">

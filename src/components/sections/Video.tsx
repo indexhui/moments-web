@@ -1,31 +1,18 @@
 "use client";
 
 import { Flex, Text, Box, AspectRatio } from "@chakra-ui/react";
+import { Section } from "@/components/ui/section";
 
 export function Video() {
   return (
-    <Flex
-      as="section"
+    <Section
       id="video"
       py={16}
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="360px"
-      w="100%"
       justify="center"
       align="center"
+      title="Video"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-      >
-        Video
-      </Text>
       <Box w="70%" maxW="1080px">
         <AspectRatio ratio={16 / 9} borderRadius="12px" overflow="hidden">
           <iframe
@@ -41,6 +28,6 @@ export function Video() {
           />
         </AspectRatio>
       </Box>
-    </Flex>
+    </Section>
   );
 }

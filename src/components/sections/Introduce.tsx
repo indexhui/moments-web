@@ -1,53 +1,20 @@
 "use client";
 
 import { Flex, Heading, Text, Box, Button, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-
-const MotionFlex = motion(Flex);
+import { Section } from "@/components/ui/section";
 
 export function Introduce() {
-  const { ref, isInView } = useScrollReveal({ once: true, amount: 0.2 });
   return (
-    <MotionFlex
-      as="section"
+    <Section
       id="introduce"
-      ref={ref}
       px="36px"
       py="32px"
-      w="100%"
-      bg="white"
-      position="relative"
-      rounded="20px"
       minH="360px"
       gap={6}
       align="stretch"
-      initial={{ y: 0 }}
-      animate={isInView ? { y: -4 } : { y: 0 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      title="Introduce"
     >
-      <Text
-        color="#A9886C"
-        position="absolute"
-        top="-32px"
-        left="24px"
-        fontSize="48px"
-        fontWeight="700"
-        opacity={isInView ? 1 : 0.7}
-        transition="opacity 0.35s ease"
-      >
-        Introduce
-      </Text>
-
-      <MotionFlex
-        direction="column"
-        justifyContent="center"
-        gap="16px"
-        flex="1"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <Flex direction="column" justifyContent="center" gap="16px" flex="1">
         <Text color="#72543B">
           在小日的城市裡
           <br />
@@ -75,7 +42,7 @@ export function Introduce() {
             早期預約
           </Button>
         </Link>
-      </MotionFlex>
+      </Flex>
       <Flex w="40%" align="stretch">
         <Box
           w="100%"
@@ -86,6 +53,6 @@ export function Introduce() {
           rounded="20px"
         ></Box>
       </Flex>
-    </MotionFlex>
+    </Section>
   );
 }
