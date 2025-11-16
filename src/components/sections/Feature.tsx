@@ -16,7 +16,10 @@ export function Feature() {
       minH="360px"
       w="100%"
       justify="center"
-      align="center"
+      align="flex-start"
+      direction="column"
+      px="36px"
+      gap="24px"
     >
       <Text
         color="#A9886C"
@@ -26,7 +29,11 @@ export function Feature() {
         fontSize="48px"
         fontWeight="700"
       >
-        Featur
+        Feature
+      </Text>
+      <Text color="#72543B">
+        走走小日 moments 是一款療癒系日常遊戲，專為通勤與上班日設計；以步行蒐集、
+        輕任務循環與角色互動為核心，陪你在城市裡記錄那些閃著光的小日常。
       </Text>
 
       <Box w={{ base: "92%", md: "86%" }} maxW="1080px">
@@ -68,7 +75,11 @@ function FeatureCard({ icon, title, desc }: FeatureCardProps) {
       rounded="16px"
       border="1px solid"
       borderColor="#EDE7E1"
-      _hover={{ boxShadow: "lg", transform: "translateY(-2px)", transition: "all 0.2s" }}
+      _hover={{
+        boxShadow: "lg",
+        transform: "translateY(-2px)",
+        transition: "all 0.2s",
+      }}
     >
       <Flex
         w="50px"
