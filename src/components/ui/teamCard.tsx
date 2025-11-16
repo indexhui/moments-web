@@ -22,7 +22,6 @@ export function TeamCard({ name, image, role }: TeamCardProps) {
       w="100%"
       _hover={{
         transform: "translateY(-4px)",
-        boxShadow: "lg",
         transition: "all 0.3s",
       }}
     >

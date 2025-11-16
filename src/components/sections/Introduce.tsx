@@ -2,14 +2,17 @@
 
 import { Flex, Heading, Text, Box, Button, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const MotionFlex = motion(Flex);
 
 export function Introduce() {
+  const { ref, isInView } = useScrollReveal({ once: true, amount: 0.2 });
   return (
-    <Flex
+    <MotionFlex
       as="section"
       id="introduce"
+      ref={ref}
       px="36px"
       py="32px"
       w="100%"
@@ -19,6 +22,9 @@ export function Introduce() {
       minH="360px"
       gap={6}
       align="stretch"
+      initial={{ y: 0 }}
+      animate={isInView ? { y: -4 } : { y: 0 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <Text
         color="#A9886C"
@@ -27,7 +33,8 @@ export function Introduce() {
         left="24px"
         fontSize="48px"
         fontWeight="700"
-        opacity={0.7}
+        opacity={isInView ? 1 : 0.7}
+        transition="opacity 0.35s ease"
       >
         Introduce
       </Text>
@@ -79,6 +86,6 @@ export function Introduce() {
           rounded="20px"
         ></Box>
       </Flex>
-    </Flex>
+    </MotionFlex>
   );
 }
