@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 import { StructuredData } from "@/components/seo/StructuredData";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -71,12 +72,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GA_ID = "G-K8RTFPVJ41";
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
       </head>
       <body>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         <Provider>{children}</Provider>
       </body>
     </html>
