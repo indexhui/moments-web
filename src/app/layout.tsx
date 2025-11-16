@@ -7,7 +7,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NODE_ENV === "production"
-      ? "https://mugio.studio"
+      ? "https://moments.mugio.studio"
       : "http://localhost:3000"
   ),
   title: {
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mugio.studio",
+    url: "https://moments.mugio.studio",
     siteName: "走走小日 moments",
     title: "走走小日 moments - 一頁式官網",
     description:
