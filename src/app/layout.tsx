@@ -78,9 +78,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
-      </head>
-      <body>
-        {/* Google Analytics */}
+        {/* Google Analytics in head for verification */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
@@ -93,6 +91,8 @@ export default function RootLayout({
             gtag('config', '${GA_ID}');
           `}
         </Script>
+      </head>
+      <body>
         <Provider>{children}</Provider>
       </body>
     </html>
