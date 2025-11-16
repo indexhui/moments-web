@@ -31,10 +31,17 @@ export function Podcast() {
       py={16}
       minH="360px"
       justify="center"
-      align="center"
+      align="flex-start"
       px={{ base: "24px", md: "80px" }}
       title="Podcast"
+      direction="column"
+      gap={{ base: 4, md: 8 }}
     >
+      <Text color="#72543B" as="h3" fontSize={{ base: "16px", md: "18px" }}>
+        哈囉！我們是麥尾。
+        <br />
+        除了會分享遊戲製作的經過會也是和不同領域創作者聊聊的小角落，歡迎收聽!
+      </Text>
       <Container maxW="container.xl" w="100%">
         {shouldUseSwiper ? (
           <Box w="100%">

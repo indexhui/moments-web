@@ -13,8 +13,8 @@ export function TeamCard({ name, image, role }: TeamCardProps) {
     <Flex
       direction="column"
       align="center"
-      gap={4}
-      p={6}
+      gap={{ base: 2, md: 4 }}
+      p={{ base: 4, md: 6 }}
       bg="white"
       rounded="20px"
       border="1px solid"
