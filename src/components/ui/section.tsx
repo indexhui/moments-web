@@ -35,9 +35,10 @@ export function Section({
       <MotionText
         color="#A9886C"
         position="absolute"
-        top="-32px"
+        top={{ base: "-24px", md: "-32px" }}
         left="24px"
-        fontSize="48px"
+        fontSize={{ base: "40px", md: "48px" }}
+        lineHeight={{ base: "42px", md: "56px" }}
         fontWeight="700"
         initial={{ y: 8, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : { y: 8, opacity: 0 }}

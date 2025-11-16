@@ -49,7 +49,7 @@ export function Teams() {
       title="Teams"
     >
       <Container maxW="container.xl" w="100%">
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={6}>
+        <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} gap={6}>
           {TEAM_MEMBERS.map((member, index) => (
             <TeamCard
               key={index}

@@ -13,6 +13,7 @@ export function Introduce() {
       gap={6}
       align="stretch"
       title="Introduce"
+      direction={{ base: "column", md: "row" }}
     >
       <Flex direction="column" justifyContent="center" gap="16px" flex="1">
         <Text color="#72543B">
@@ -43,10 +44,10 @@ export function Introduce() {
           </Button>
         </Link>
       </Flex>
-      <Flex w="40%" align="stretch">
+      <Flex w={{ base: "100%", md: "40%" }} align="center" justify="center">
         <Box
           w="100%"
-          h="100%"
+          h={{ base: "200px", md: "300px" }}
           bgImage="url('/mrt.png')"
           bgSize="cover"
           bgPos="center"

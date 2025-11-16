@@ -13,12 +13,14 @@ export function Stories() {
       gap={8}
       align="stretch"
       title="Share Your Story"
+      direction={{ base: "column", md: "row" }}
     >
       <Flex
         direction="column"
         gap="16px"
         w={{ base: "100%", md: "60%" }}
         maxW="1080px"
+        pt="32px"
       >
         <Text
           color="#72543B"
@@ -58,8 +60,8 @@ export function Stories() {
         </Link>
       </Flex>
       <Flex
-        w={{ base: "0%", md: "40%" }}
-        display={{ base: "none", md: "flex" }}
+        w={{ base: "100%", md: "40%" }}
+        // display={{ base: "none", md: "flex" }}
         align="center"
         justify="center"
       >
