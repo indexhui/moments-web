@@ -1,6 +1,9 @@
 "use client";
 
 import { Flex, Heading, Text, Box, Button, Link } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+
+const MotionFlex = motion(Flex);
 
 export function Introduce() {
   return (
@@ -24,11 +27,20 @@ export function Introduce() {
         left="24px"
         fontSize="48px"
         fontWeight="700"
+        opacity={0.7}
       >
         Introduce
       </Text>
 
-      <Flex direction="column" justifyContent="center" gap="16px" flex="1">
+      <MotionFlex
+        direction="column"
+        justifyContent="center"
+        gap="16px"
+        flex="1"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      >
         <Text color="#72543B">
           在小日的城市裡
           <br />
@@ -56,7 +68,7 @@ export function Introduce() {
             早期預約
           </Button>
         </Link>
-      </Flex>
+      </MotionFlex>
       <Flex w="40%" align="stretch">
         <Box
           w="100%"
