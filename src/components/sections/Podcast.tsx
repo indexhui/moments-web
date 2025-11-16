@@ -12,6 +12,9 @@ import {
 import { Section } from "@/components/ui/section";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 
 export function Podcast() {
@@ -39,7 +42,10 @@ export function Podcast() {
             <Swiper
               spaceBetween={16}
               slidesPerView={1.1}
-              style={{ padding: "4px 8px" }}
+              modules={[Pagination, Navigation]}
+              pagination={{ clickable: true }}
+              navigation
+              style={{ padding: "4px 8px 24px" }}
             >
               <SwiperSlide>
                 <AspectRatio
