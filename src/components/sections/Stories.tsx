@@ -71,15 +71,20 @@ export function Stories() {
           </Button>
         </Link>
       </Flex>
-      <Flex w={{ base: "0%", md: "40%" }} align="stretch" display={{ base: "none", md: "flex" }}>
+      <Flex
+        w={{ base: "0%", md: "40%" }}
+        display={{ base: "none", md: "flex" }}
+        align="center"
+        justify="center"
+      >
         <Box
-          w="100%"
-          h="100%"
+          w="163px"
+          h="155px"
           bgImage="url('/animals/golden.png')"
-          bgSize="cover"
+          bgSize="contain"
           bgPos="center"
-          rounded="20px"
-        ></Box>
+          bgRepeat="no-repeat"
+        />
       </Flex>
     </Flex>
   );
