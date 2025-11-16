@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, Heading, Text, Box, Button } from "@chakra-ui/react";
+import { Flex, Heading, Text, Box, Button, Link } from "@chakra-ui/react";
 
 export function Introduce() {
   return (
@@ -39,15 +39,23 @@ export function Introduce() {
           <br />
           每次出門都是冒險的開始，快踏上吧！
         </Text>
-        <Button
-          colorScheme="brand"
-          size="md"
-          bgColor="#987455"
+        <Link
+          href="https://forms.gle/xiYyFgGEADZX7QjC7"
+          target="_blank"
+          rel="noopener noreferrer"
+          _hover={{ textDecoration: "none" }}
           w="200px"
-          rounded="30px"
         >
-          填寫試完表單
-        </Button>
+          <Button
+            colorScheme="brand"
+            size="md"
+            bgColor="#987455"
+            w="100%"
+            rounded="30px"
+          >
+            早期預約
+          </Button>
+        </Link>
       </Flex>
       <Flex w="40%" align="stretch">
         <Box
