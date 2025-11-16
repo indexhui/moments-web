@@ -43,7 +43,7 @@ export function Podcast() {
               slidesPerView={1.1}
               modules={[Pagination]}
               pagination={{ clickable: true }}
-              style={{ padding: "4px 8px 40px" }}
+              style={{ padding: "4px 8px 32px" }}
             >
               <SwiperSlide>
                 <AspectRatio
@@ -113,7 +113,7 @@ export function Podcast() {
                 opacity: 1;
               }
               #podcast .swiper-pagination {
-                bottom: -12px;
+                bottom: -6px;
               }
             `}</style>
           </Box>
