@@ -13,7 +13,7 @@ export function Video() {
       align="center"
       title="Video"
     >
-      <Box w="70%" maxW="1080px">
+      <Box w={{ base: "90%", md: "70%" }} maxW="1080px">
         <AspectRatio ratio={16 / 9} borderRadius="12px" overflow="hidden">
           <iframe
             src="https://www.youtube.com/embed/y35XLcXai6c"

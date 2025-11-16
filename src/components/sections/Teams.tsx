@@ -45,7 +45,7 @@ export function Teams() {
       minH="360px"
       justify="center"
       align="center"
-      px="80px"
+      px={{ base: "24px", md: "80px" }}
       title="Teams"
     >
       <Container maxW="container.xl" w="100%">
