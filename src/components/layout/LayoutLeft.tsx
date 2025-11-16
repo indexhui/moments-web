@@ -51,7 +51,7 @@ export function LayoutLeft() {
   }, []);
   return (
     <Flex
-      w="300px"
+      w={{ base: "100%", md: "300px" }}
       bgColor="white"
       rounded="lg"
       color="black"

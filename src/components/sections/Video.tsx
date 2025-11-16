@@ -7,8 +7,8 @@ export function Video() {
   return (
     <Section
       id="video"
-      py={16}
-      minH="360px"
+      py={{ base: "36px", md: "48px" }}
+      minH={{ base: "200px", md: "360px" }}
       justify="center"
       align="center"
       title="Video"
