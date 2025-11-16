@@ -133,7 +133,11 @@ export function Slot({ symbols, onResult }: SlotProps) {
       >
         <MotionBox
           key={`${spinning ? "spin" : "stop"}-${index}-${stopIndex}`}
-          animate={spinning ? { y: [0, -60, -120, -180, -240, 0] } : { y: targetOffset }}
+          animate={
+            spinning
+              ? { y: [0, -60, -120, -180, -240, 0] }
+              : { y: targetOffset }
+          }
           transition={
             spinning
               ? {
@@ -176,7 +180,7 @@ export function Slot({ symbols, onResult }: SlotProps) {
         px="28px"
         h="40px"
       >
-        {spinning ? "轉動中..." : "開始"}
+        {spinning ? "轉動中..." : "拉霸雞"}
       </Button>
     </Flex>
   );
