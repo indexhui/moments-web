@@ -41,15 +41,9 @@ export const metadata: Metadata = {
       "走走小日 moments 是一款療癒系日常遊戲（尚未推出）。追蹤我們以獲得最新消息。",
     images: [
       {
-        url: "/ogImage.png",
+        url: "/moments_og.jpg",
         width: 1200,
         height: 630,
-        alt: "走走小日 moments",
-      },
-      {
-        url: "/ogImage_sm.png",
-        width: 600,
-        height: 315,
         alt: "走走小日 moments",
       },
     ],
@@ -59,7 +53,7 @@ export const metadata: Metadata = {
     title: "走走小日 moments - 一頁式官網",
     description:
       "走走小日 moments 是一款療癒系日常遊戲（尚未推出）。追蹤我們以獲得最新消息。",
-    images: ["/ogImage.png", "/ogImage_sm.png"],
+    images: ["/moments_og.jpg"],
     creator: "@mugio_studio",
   },
   verification: {
