@@ -54,7 +54,7 @@ export function Stories() {
           重新敘述或改編你的故事（會進行匿名處理）。
         </Text>
         <Link
-          href="https://forms.gle/gtKXj3iJbPKWQLmb8"
+          href="https://forms.gle/vJoxa77Gsj1MAT4h8"
           target="_blank"
           rel="noopener noreferrer"
           _hover={{ textDecoration: "none" }}
