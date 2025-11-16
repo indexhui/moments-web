@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/private/", "/admin/"],
     },
-    sitemap: "https://fansnetwork.com/sitemap.xml",
+    sitemap: "https://moments.mugio.studio/sitemap.xml",
   };
 }
