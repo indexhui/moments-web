@@ -8,15 +8,14 @@ export function Stories() {
       as="section"
       id="stories"
       px="36px"
-      py="32px"
+      py="48px"
       w="100%"
       bg="white"
       position="relative"
       rounded="20px"
       minH="220px"
-      gap={6}
+      gap={8}
       align="stretch"
-      direction="column"
     >
       <Text
         color="#A9886C"
@@ -26,13 +25,33 @@ export function Stories() {
         fontSize="48px"
         fontWeight="700"
       >
-        通勤小故事募集
+        Share Your Story
       </Text>
 
-      <Box w={{ base: "100%", md: "86%" }} maxW="1080px">
-        <Text color="#72543B" as="h2" fontSize="18px" fontWeight="500" maxW="680px">
-          分享你在通勤或上班途中遇到的糗事、趣事或最討厭的一瞬間；這些日常故事，可能會成為
-          走走小日 moments 的關卡靈感。
+      <Flex
+        direction="column"
+        gap="16px"
+        w={{ base: "100%", md: "60%" }}
+        maxW="1080px"
+      >
+        <Text
+          color="#72543B"
+          as="h2"
+          fontSize="18px"
+          fontWeight="500"
+          maxW="680px"
+        >
+          募集通勤或上班途中遇到的糗事、趣事或最討厭的一瞬間!
+          <br />
+          不論是通勤時的好氣、好笑或好累，都歡迎告訴我們。
+          <br />
+          邀請大家來投稿，將會在 Podcast
+          中分享大家的故事，有機會成為遊戲中的事件！
+        </Text>
+
+        <Text color="#72543B" fontSize="12px">
+          投稿代表同意我們在遊戲、網站、Podcast 或社群中
+          重新敘述或改編你的故事（會進行匿名處理）。
         </Text>
         <Link
           href="https://forms.gle/gtKXj3iJbPKWQLmb8"
@@ -51,7 +70,17 @@ export function Stories() {
             分享我的故事
           </Button>
         </Link>
-      </Box>
+      </Flex>
+      <Flex w={{ base: "0%", md: "40%" }} align="stretch" display={{ base: "none", md: "flex" }}>
+        <Box
+          w="100%"
+          h="100%"
+          bgImage="url('/animals/golden.png')"
+          bgSize="cover"
+          bgPos="center"
+          rounded="20px"
+        ></Box>
+      </Flex>
     </Flex>
   );
 }
