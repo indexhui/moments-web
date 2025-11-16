@@ -10,6 +10,7 @@ import {
   Link,
   Flex,
   AspectRatio,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -19,6 +20,7 @@ const MotionBox = motion(Box);
 
 export function Hero() {
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false }) ?? false;
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -38,7 +40,7 @@ export function Hero() {
 
   // 追踪鼠标位置
   useEffect(() => {
-    if (!isAnimationComplete) return;
+    if (!isAnimationComplete || isMobile) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
@@ -59,7 +61,7 @@ export function Hero() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isAnimationComplete, mouseX, mouseY]);
+  }, [isAnimationComplete, isMobile, mouseX, mouseY]);
 
   // 为不同元素创建不同方向和强度的变换
   // dust01: 主要水平移动，轻微垂直
@@ -115,8 +117,8 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1], // 温和的 easing
             }}
             style={{
-              x: isAnimationComplete ? dust01X : 0,
-              y: isAnimationComplete ? dust01Y : 0,
+              x: isAnimationComplete && !isMobile ? dust01X : 0,
+              y: isAnimationComplete && !isMobile ? dust01Y : 0,
             }}
           >
             <AspectRatio ratio={937 / 282}>
@@ -142,8 +144,8 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
-              x: isAnimationComplete ? dust02X : 0,
-              y: isAnimationComplete ? dust02Y : 0,
+              x: isAnimationComplete && !isMobile ? dust02X : 0,
+              y: isAnimationComplete && !isMobile ? dust02Y : 0,
             }}
           >
             <AspectRatio ratio={1000 / 337}>
@@ -169,8 +171,8 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
-              x: isAnimationComplete ? animalsX : 0,
-              y: isAnimationComplete ? animalsY : 0,
+              x: isAnimationComplete && !isMobile ? animalsX : 0,
+              y: isAnimationComplete && !isMobile ? animalsY : 0,
             }}
           >
             <AspectRatio ratio={605 / 495}>
@@ -196,8 +198,8 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
-              x: isAnimationComplete ? birdsX : 0,
-              y: isAnimationComplete ? birdsY : 0,
+              x: isAnimationComplete && !isMobile ? birdsX : 0,
+              y: isAnimationComplete && !isMobile ? birdsY : 0,
             }}
           >
             <AspectRatio ratio={310 / 156}>
@@ -223,8 +225,8 @@ export function Hero() {
               ease: [0.16, 1, 0.3, 1],
             }}
             style={{
-              x: isAnimationComplete ? logoX : 0,
-              y: isAnimationComplete ? logoY : 0,
+              x: isAnimationComplete && !isMobile ? logoX : 0,
+              y: isAnimationComplete && !isMobile ? logoY : 0,
             }}
           >
             <AspectRatio ratio={238 / 115}>
