@@ -20,21 +20,22 @@ const MotionBox = motion(Box);
 export function Slot({ symbols, onResult }: SlotProps) {
   const defaultSymbols = useMemo<SlotSymbol[]>(
     () => [
-      { id: "animal1", label: "A", imageUrl: "/animals/golden.png" },
-      { id: "animal2", label: "B", imageUrl: "/hero/birds.png" },
-      { id: "animal3", label: "C", imageUrl: "/hero/animals.png" },
-      { id: "unknown", label: "?", imageUrl: "/favicon.png" },
+      { id: "animal1", label: "A", imageUrl: "/slot/golden.png" },
+      { id: "animal2", label: "B", imageUrl: "/slot/penquien.png" },
+      { id: "animal3", label: "C", imageUrl: "/slot/capybara.png" },
     ],
     []
   );
 
-  const pool = symbols && symbols.length >= 4 ? symbols : defaultSymbols;
+  const pool = symbols && symbols.length >= 3 ? symbols : defaultSymbols;
   const [spinning, setSpinning] = useState(false);
+  const [hasSpun, setHasSpun] = useState(false);
   const [stops, setStops] = useState<[number, number, number]>([0, 1, 2]);
 
   const start = useCallback(() => {
     if (spinning) return;
     setSpinning(true);
+    setHasSpun(true);
 
     const nextStops: [number, number, number] = [
       Math.floor(Math.random() * pool.length),
@@ -44,7 +45,7 @@ export function Slot({ symbols, onResult }: SlotProps) {
     setStops(nextStops);
 
     // 停止時間做出階梯效果
-    const stopDelays = [1100, 1400, 1700];
+    const stopDelays = [1100, 1450, 1900];
     stopDelays.forEach((delay, idx) => {
       setTimeout(() => {
         if (idx === 2) {
@@ -90,14 +91,34 @@ export function Slot({ symbols, onResult }: SlotProps) {
     );
   };
 
-  const Reel = ({
-    index,
-    stopIndex,
-  }: {
-    index: number;
-    stopIndex: number;
-  }) => {
-    const targetSymbol = pool[stopIndex % pool.length];
+  const Reel = ({ index, stopIndex }: { index: number; stopIndex: number }) => {
+    if (!hasSpun) {
+      return (
+        <Box
+          w="60px"
+          h="60px"
+          rounded="10px"
+          bg="white"
+          border="2px solid"
+          borderColor="#987455"
+          boxShadow="0 2px 0 rgba(0,0,0,0.06)"
+          overflow="hidden"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Box
+            w="100%"
+            h="100%"
+            bgImage="url('/slot/question.png')"
+            bgSize="cover"
+            bgPos="center"
+          />
+        </Box>
+      );
+    }
+    const targetOffset = -(stopIndex % pool.length) * 60;
+    const spinDuration = [0.5, 0.6, 0.72][index] ?? 0.6;
     return (
       <Box
         w="60px"
@@ -108,36 +129,32 @@ export function Slot({ symbols, onResult }: SlotProps) {
         borderColor="#987455"
         boxShadow="0 2px 0 rgba(0,0,0,0.06)"
         overflow="hidden"
+        position="relative"
       >
         <MotionBox
           key={`${spinning ? "spin" : "stop"}-${index}-${stopIndex}`}
-          animate={
-            spinning
-              ? { y: [0, -60, -120, -180, -240, 0] }
-              : { y: 0 }
-          }
+          animate={spinning ? { y: [0, -60, -120, -180, -240, 0] } : { y: targetOffset }}
           transition={
             spinning
               ? {
-                  duration: 0.6,
+                  duration: spinDuration,
                   ease: [0.16, 1, 0.3, 1],
                   repeat: Infinity,
                 }
-              : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+              : { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
           }
         >
           {/* 3 倍高度內容做循環滾動效果 */}
           <Flex direction="column">
-            {pool.slice(0, 3).map((sym) => (
-              <Box key={`loop-${sym.id}-${index}-${sym.label}`}>{renderCell(sym)}</Box>
-            ))}
+            {[...Array(4)]
+              .flatMap(() => pool)
+              .map((sym, i) => (
+                <Box key={`loop-${sym.id}-${index}-${i}`}>
+                  {renderCell(sym)}
+                </Box>
+              ))}
           </Flex>
         </MotionBox>
-        {!spinning && (
-          <Box position="absolute" w="60px" h="60px" top={0} left={0}>
-            {renderCell(targetSymbol)}
-          </Box>
-        )}
       </Box>
     );
   };

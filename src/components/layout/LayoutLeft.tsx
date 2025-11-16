@@ -1,6 +1,7 @@
 "use client";
 
 import { Walk } from "@/components/ui/walk";
+import { Slot } from "@/components/ui/slot";
 import { Flex, Text, Icon, SimpleGrid, Link } from "@chakra-ui/react";
 import {
   FaPenToSquare,
@@ -219,6 +220,7 @@ export function LayoutLeft() {
       <Flex border="2px solid #987455" p="10px" rounded="lg">
         <Text color="#987455">12/12 G-EIGHT 遊戲展見</Text>
       </Flex>
+      <Slot />
     </Flex>
   );
 }
