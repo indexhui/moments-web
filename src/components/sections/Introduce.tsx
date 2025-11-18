@@ -22,7 +22,7 @@ export function Introduce() {
           fontWeight="600"
           color="#72543B"
         >
-          走走小日 moments - 跟著麥尾與小貝狗探索城市的療癒日常遊戲
+          走走小日 moments - 跟著小麥與小貝狗探索城市的療癒日常遊戲
         </Heading>
 
         <Text color="#72543B">
