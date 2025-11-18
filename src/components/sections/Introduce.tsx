@@ -16,10 +16,13 @@ export function Introduce() {
       direction={{ base: "column", md: "row" }}
     >
       <Flex direction="column" justifyContent="center" gap="16px" flex="1">
-        <Text color="#72543B">
-          在小日的城市裡
-          <br />
-          每天都有不同的故事發生
+        <Text
+          color="#72543B"
+          as="h2"
+          fontSize={{ base: "18px", md: "20px" }}
+          fontWeight="600"
+        >
+          走走小日：在小日的城市裡，每天都有不同的故事發生
         </Text>
         <Text color="#72543B">
           從出門、通勤到回家，每一天都能遇見療癒的小事件與角色。
