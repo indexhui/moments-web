@@ -15,8 +15,18 @@ export const metadata: Metadata = {
     template: "%s | 走走小日 moments",
   },
   description:
-    "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息與釋出時間。",
-  keywords: ["走走小日", "moments", "Mugio Studio", "通勤", "日常遊戲"],
+    "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息與釋出時間。",
+  keywords: [
+    "走走小日",
+    "麥尾",
+    "moments",
+    "Mugio Studio",
+    "通勤",
+    "日常遊戲",
+    "療癒遊戲",
+    "小麥",
+    "小貝狗",
+  ],
   authors: [{ name: "Mugio Studio" }],
   creator: "Mugio Studio",
   publisher: "Mugio Studio",
@@ -38,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "走走小日 moments",
     title: "走走小日 moments - 陪你一起過生活",
     description:
-      "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息。",
+      "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
     images: [
       {
         url: "/moments_og.jpg",
@@ -52,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "走走小日 moments - 一頁式官網",
     description:
-      "走走小日 moments 是一款生活系日常遊戲。追蹤我們以獲得最新消息。",
+      "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
     images: ["/moments_og.jpg"],
     creator: "@mugio_studio",
   },
@@ -69,7 +79,7 @@ export default function RootLayout({
   const GA_ID = "G-K8RTFPVJ41";
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-TW" suppressHydrationWarning>
       <head>
         <StructuredData />
         {/* Google Analytics in head for verification */}

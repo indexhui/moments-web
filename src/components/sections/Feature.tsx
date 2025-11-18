@@ -29,6 +29,8 @@ export function Feature() {
         <br />
         以步行蒐集、
         輕任務循環與角色互動為核心，陪你在城市裡記錄那些閃著光的小日常。
+        <br />
+        跟著麥尾與小貝狗，一起探索城市中的療癒瞬間。
       </Text>
 
       <Box w={{ base: "92%", md: "86%" }} maxW="1080px">
@@ -41,7 +43,7 @@ export function Feature() {
           <FeatureCard
             icon={<FaHeart />}
             title="日常陪伴"
-            desc="跟著小麥與小貝狗，收集生活裡閃亮的小瞬間。"
+            desc="跟著麥尾與小貝狗，收集生活裡閃亮的小瞬間。"
           />
           <FeatureCard
             icon={<FaStar />}
