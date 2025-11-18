@@ -16,14 +16,15 @@ export function Introduce() {
       direction={{ base: "column", md: "row" }}
     >
       <Flex direction="column" justifyContent="center" gap="16px" flex="1">
-        <Text
-          color="#72543B"
+        <Heading
           as="h2"
           fontSize={{ base: "18px", md: "20px" }}
           fontWeight="600"
+          color="#72543B"
         >
-          走走小日：在小日的城市裡，每天都有不同的故事發生
-        </Text>
+          走走小日 moments - 跟著麥尾與小貝狗探索城市的療癒日常遊戲
+        </Heading>
+
         <Text color="#72543B">
           從出門、通勤到回家，每一天都能遇見療癒的小事件與角色。
           <br />

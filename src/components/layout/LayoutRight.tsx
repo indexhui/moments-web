@@ -7,6 +7,7 @@ import { Teams } from "@/components/sections/Teams";
 import { Podcast } from "@/components/sections/Podcast";
 import { Feature } from "@/components/sections/Feature";
 import { Stories } from "@/components/sections/Stories";
+import { SEOInfo } from "@/components/sections/SEOInfo";
 
 import { Flex } from "@chakra-ui/react";
 
@@ -20,6 +21,7 @@ export function LayoutRight() {
       <Video />
       <Teams />
       <Podcast />
+      <SEOInfo />
     </Flex>
   );
 }
