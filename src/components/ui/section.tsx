@@ -1,3 +1,5 @@
+"use client";
+
 import { Flex, Text, type FlexProps, type TextProps } from "@chakra-ui/react";
 import React from "react";
 import { motion } from "framer-motion";
