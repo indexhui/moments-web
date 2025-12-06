@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "zh_TW",
     url: "https://moments.mugio.studio",
     siteName: "走走小日 moments",
     title: "走走小日 moments - 陪你一起過生活",

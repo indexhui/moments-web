@@ -221,6 +221,10 @@ export function LayoutLeft() {
         <Text color="#987455">12/12 G-EIGHT 遊戲展見</Text>
       </Flex>
       <Slot />
+      <Flex direction="column" gap={1}>
+        <Text color="#987455">歡迎來信</Text>
+        <Text color="#987455">hello@mugio.studio</Text>
+      </Flex>
     </Flex>
   );
 }

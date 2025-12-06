@@ -93,6 +93,19 @@ export function Hero() {
       alignItems="center"
       position="relative"
     >
+      {/* SEO: 視覺隱藏但可被搜尋引擎讀取的 h1 */}
+      <Heading
+        as="h1"
+        position="absolute"
+        left="-9999px"
+        width="1px"
+        height="1px"
+        overflow="hidden"
+        fontSize="1px"
+        aria-hidden="false"
+      >
+        走走小日 moments - 跟著麥尾與小貝狗探索城市的療癒日常遊戲
+      </Heading>
       <Flex
         w="100%"
         bgImage="url('/hero/heroBg.png')"

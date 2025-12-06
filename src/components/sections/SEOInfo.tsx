@@ -54,7 +54,8 @@ export function SEOInfo() {
             fontSize={{ base: "14px", md: "16px" }}
             lineHeight="1.8"
           >
-            <strong>麥尾</strong>是走走小日 moments 的製作團隊，致力於創造療癒系日常遊戲體驗。
+            <strong>麥尾</strong>是走走小日 moments
+            的製作團隊，致力於創造療癒系日常遊戲體驗。
             跟著麥尾與小貝狗，收集生活裡閃亮的小瞬間，讓每次出門都成為療癒的開始。
           </Text>
         </Box>
