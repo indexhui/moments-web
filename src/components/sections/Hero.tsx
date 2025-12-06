@@ -85,14 +85,7 @@ export function Hero() {
   const logoY = useTransform(y, (v) => v * 6);
 
   return (
-    <AspectRatio
-      ratio={1080 / 565}
-      id="hero"
-      w="100%"
-      display="flex"
-      alignItems="center"
-      position="relative"
-    >
+    <Box position="relative" w="100%">
       {/* SEO: 視覺隱藏但可被搜尋引擎讀取的 h1 */}
       <Heading
         as="h1"
@@ -106,7 +99,15 @@ export function Hero() {
       >
         走走小日 moments - 跟著麥尾與小貝狗探索城市的療癒日常遊戲
       </Heading>
-      <Flex
+      <AspectRatio
+        ratio={1080 / 565}
+        id="hero"
+        w="100%"
+        display="flex"
+        alignItems="center"
+        position="relative"
+      >
+        <Flex
         w="100%"
         bgImage="url('/hero/heroBg.png')"
         bgSize="cover"
@@ -253,6 +254,7 @@ export function Hero() {
           </MotionBox>
         </Box>
       </Flex>
-    </AspectRatio>
+      </AspectRatio>
+    </Box>
   );
 }
