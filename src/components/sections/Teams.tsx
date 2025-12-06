@@ -1,5 +1,3 @@
-"use client";
-
 import { Flex, Text, SimpleGrid, Container } from "@chakra-ui/react";
 import { TeamCard } from "@/components/ui/teamCard";
 import { Section } from "@/components/ui/section";

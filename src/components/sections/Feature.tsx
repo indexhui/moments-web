@@ -1,5 +1,3 @@
-"use client";
-
 import { Flex, Text, SimpleGrid, Box } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { FaLeaf, FaHeart, FaStar } from "react-icons/fa6";

@@ -1,5 +1,3 @@
-"use client";
-
 import { Flex, Heading, Text, Box, Button, Link } from "@chakra-ui/react";
 import { Section } from "@/components/ui/section";
 
