@@ -3,7 +3,7 @@
 // value: 要合併到的題目 key（用於統計合併）
 // 例如 "EV_01_02" 和 "只剩下博愛座" 會合併成同一題
 export const questionAliases: Record<string, string> = {
-  Entry_20_4: "只剩下博愛座",
+  Entry_21_4: "只剩下博愛座",
   Entry_2_8: "鬧鐘響了",
   // 可以繼續新增其他別名...
 }
@@ -21,6 +21,7 @@ export const questionDisplayNames: Record<string, string> = {
 // 要顯示的題目清單（依此順序顯示）
 // 留空陣列 [] 則顯示所有題目
 // 使用合併後的題目 key
+// export const displayQuestions: string[] = []
 export const displayQuestions: string[] = ["店員做錯咖啡，要怎麼做呢？", "今天要怎麼去公司呢？", "只剩下博愛座", "鬧鐘響了", "Entry_12_6"]
 
 // 問題對應圖片設定

@@ -445,11 +445,23 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
         pr="160px"
       >
         {/* 左欄：iOS 試玩下載 */}
-        <Flex direction="column" align="center" justify="center" w="343px" flexShrink={0} mr="64px">
+        <Flex
+          direction="column"
+          align="center"
+          justify="center"
+          w="343px"
+          h="336px"
+          flexShrink={0}
+          mr="64px"
+          bg="rgba(255,255,255,1)"
+          borderRadius="12px"
+          p="16px"
+          my="auto"
+        >
           <Text fontSize="24px" fontWeight="700" color="#333" fontFamily="var(--font-cubic)" mb="24px" textAlign="center">
             iOS 試玩下載
           </Text>
-          <Image src="" alt="QR Code" w="200px" h="200px" bg="rgba(0,0,0,0.05)" borderRadius="12px" />
+          <Image src="/download.svg" alt="QR Code" w="231px" h="231px" />
         </Flex>
 
         {/* 中欄：設定圖片 */}
