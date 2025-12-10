@@ -1,5 +1,5 @@
-import { Flex, Text, Box, AspectRatio } from "@chakra-ui/react";
-import { Section } from "@/components/ui/section";
+import { Flex, Text, Box, AspectRatio } from "@chakra-ui/react"
+import { Section } from "@/components/ui/section"
 
 export function Video() {
   return (
@@ -10,6 +10,9 @@ export function Video() {
       justify="center"
       align="center"
       title="Video"
+      titleProps={{
+        title: "走走小日 遊戲宣傳影片",
+      }}
     >
       <Box w={{ base: "90%", md: "70%" }} maxW="1080px">
         <AspectRatio ratio={16 / 9} borderRadius="12px" overflow="hidden">
@@ -27,5 +30,5 @@ export function Video() {
         </AspectRatio>
       </Box>
     </Section>
-  );
+  )
 }

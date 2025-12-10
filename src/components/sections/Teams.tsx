@@ -1,6 +1,6 @@
-import { Flex, Text, SimpleGrid, Container } from "@chakra-ui/react";
-import { TeamCard } from "@/components/ui/teamCard";
-import { Section } from "@/components/ui/section";
+import { Flex, Text, SimpleGrid, Container } from "@chakra-ui/react"
+import { TeamCard } from "@/components/ui/teamCard"
+import { Section } from "@/components/ui/section"
 
 const TEAM_MEMBERS = [
   {
@@ -33,7 +33,7 @@ const TEAM_MEMBERS = [
     image: "/team/zora.png",
     role: "Team Member",
   },
-];
+]
 
 export function Teams() {
   return (
@@ -45,22 +45,17 @@ export function Teams() {
       align="center"
       px={{ base: "24px", md: "80px" }}
       title="Teams"
+      titleProps={{
+        title: "麥尾 走走小日 團隊成員",
+      }}
     >
       <Container maxW="container.xl" w="100%">
-        <SimpleGrid
-          columns={{ base: 2, sm: 2, md: 3, lg: 4 }}
-          gap={{ base: 2, md: 6 }}
-        >
+        <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} gap={{ base: 2, md: 6 }}>
           {TEAM_MEMBERS.map((member, index) => (
-            <TeamCard
-              key={index}
-              name={member.name}
-              image={member.image}
-              role={member.role}
-            />
+            <TeamCard key={index} name={member.name} image={member.image} role={member.role} />
           ))}
         </SimpleGrid>
       </Container>
     </Section>
-  );
+  )
 }

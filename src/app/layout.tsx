@@ -1,32 +1,20 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { Provider } from "@/components/ui/provider";
-import { StructuredData } from "@/components/seo/StructuredData";
-import Script from "next/script";
+import type { Metadata } from "next"
+import "./globals.css"
+import { Provider } from "@/components/ui/provider"
+import { StructuredData } from "@/components/seo/StructuredData"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NODE_ENV === "production"
-      ? "https://moments.mugio.studio"
-      : "http://localhost:3000"
-  ),
+  metadataBase: new URL(process.env.NODE_ENV === "production" ? "https://moments.mugio.studio" : "http://localhost:3000"),
   title: {
     default: "走走小日 moments - 陪妳一起過生活",
     template: "%s | 走走小日 moments",
   },
-  description:
-    "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息與釋出時間。",
-  keywords: [
-    "走走小日",
-    "麥尾",
-    "moments",
-    "Mugio Studio",
-    "通勤",
-    "日常遊戲",
-    "療癒遊戲",
-    "小麥",
-    "小貝狗",
-  ],
+  description: "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息與釋出時間。",
+  keywords: ["走走小日", "麥尾", "moments", "Mugio Studio", "通勤", "日常遊戲", "療癒遊戲", "小麥", "小貝狗"],
+  alternates: {
+    canonical: "https://moments.mugio.studio",
+  },
   authors: [{ name: "Mugio Studio" }],
   creator: "Mugio Studio",
   publisher: "Mugio Studio",
@@ -47,8 +35,7 @@ export const metadata: Metadata = {
     url: "https://moments.mugio.studio",
     siteName: "走走小日 moments",
     title: "走走小日 moments - 陪你一起過生活",
-    description:
-      "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
+    description: "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
     images: [
       {
         url: "/moments_og.jpg",
@@ -61,32 +48,28 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "走走小日 moments - 一頁式官網",
-    description:
-      "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
+    description: "走走小日 moments 是一款生活系日常遊戲，跟著麥尾與小貝狗在城市中探索。追蹤我們以獲得最新消息。",
     images: ["/moments_og.jpg"],
     creator: "@mugio_studio",
   },
   verification: {
     google: "",
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const GA_ID = "G-K8RTFPVJ41";
+  const GA_ID = "G-K8RTFPVJ41"
 
   return (
     <html lang="zh-TW" suppressHydrationWarning>
       <head>
         <StructuredData />
         {/* Google Analytics in head for verification */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
         <Script id="ga-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -110,5 +93,5 @@ export default function RootLayout({
         <Provider>{children}</Provider>
       </body>
     </html>
-  );
+  )
 }

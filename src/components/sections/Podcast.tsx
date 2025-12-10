@@ -1,30 +1,22 @@
-"use client";
+"use client"
 
-import {
-  Flex,
-  Text,
-  Box,
-  AspectRatio,
-  SimpleGrid,
-  Container,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import { Section } from "@/components/ui/section";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Pagination } from "swiper/modules";
-import "swiper/css/pagination";
-import { useEffect, useState } from "react";
+import { Flex, Text, Box, AspectRatio, SimpleGrid, Container, useBreakpointValue } from "@chakra-ui/react"
+import { Section } from "@/components/ui/section"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import { Pagination } from "swiper/modules"
+import "swiper/css/pagination"
+import { useEffect, useState } from "react"
 
 export function Podcast() {
-  const isMobile = useBreakpointValue({ base: true, md: false }) ?? false;
-  const [mounted, setMounted] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false }) ?? false
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  const shouldUseSwiper = isMobile && mounted;
+  const shouldUseSwiper = isMobile && mounted
   return (
     <Section
       id="podcast"
@@ -36,6 +28,9 @@ export function Podcast() {
       title="Podcast"
       direction="column"
       gap={{ base: 4, md: 8 }}
+      titleProps={{
+        title: "麥尾Podcast",
+      }}
     >
       <Text color="#72543B" as="h3" fontSize={{ base: "16px", md: "18px" }}>
         哈囉！我們是麥尾。
@@ -53,11 +48,7 @@ export function Podcast() {
               style={{ padding: "4px 8px 32px" }}
             >
               <SwiperSlide>
-                <AspectRatio
-                  ratio={9 / 16}
-                  borderRadius="12px"
-                  overflow="hidden"
-                >
+                <AspectRatio ratio={9 / 16} borderRadius="12px" overflow="hidden">
                   <iframe
                     src="https://www.youtube.com/embed/4AEtWZOumxY"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -72,11 +63,7 @@ export function Podcast() {
                 </AspectRatio>
               </SwiperSlide>
               <SwiperSlide>
-                <AspectRatio
-                  ratio={9 / 16}
-                  borderRadius="12px"
-                  overflow="hidden"
-                >
+                <AspectRatio ratio={9 / 16} borderRadius="12px" overflow="hidden">
                   <iframe
                     src="https://www.youtube.com/embed/xNXu3ZrIYSY"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -91,11 +78,7 @@ export function Podcast() {
                 </AspectRatio>
               </SwiperSlide>
               <SwiperSlide>
-                <AspectRatio
-                  ratio={9 / 16}
-                  borderRadius="12px"
-                  overflow="hidden"
-                >
+                <AspectRatio ratio={9 / 16} borderRadius="12px" overflow="hidden">
                   <iframe
                     src="https://www.youtube.com/embed/fLjdFyNRhvI"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -175,5 +158,5 @@ export function Podcast() {
         )}
       </Container>
     </Section>
-  );
+  )
 }
