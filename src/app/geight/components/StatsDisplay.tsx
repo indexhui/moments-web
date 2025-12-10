@@ -51,7 +51,7 @@ function processStats(
     if (!response.question || !response.answer) continue
     const normalizedQuestion = normalizeQuestion(response.question)
     const answers = questionGroups.get(normalizedQuestion) || []
-    answers.push(response.answer)
+    answers.push(response.answer.trim())
     questionGroups.set(normalizedQuestion, answers)
   }
 

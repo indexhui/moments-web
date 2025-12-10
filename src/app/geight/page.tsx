@@ -58,9 +58,7 @@ function processStats(
 
   // 如果有指定顯示題目，按照 displayQuestions 順序過濾並排序
   if (displayQuestions.length > 0) {
-    return displayQuestions
-      .map((q) => statsMap.get(q))
-      .filter((stat): stat is QuestionStat => stat !== undefined)
+    return displayQuestions.map((q) => statsMap.get(q)).filter((stat): stat is QuestionStat => stat !== undefined)
   }
 
   // 否則按總回應數排序（多的在前）
