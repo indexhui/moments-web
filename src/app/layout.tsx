@@ -3,6 +3,14 @@ import "./globals.css"
 import { Provider } from "@/components/ui/provider"
 import { StructuredData } from "@/components/seo/StructuredData"
 import Script from "next/script"
+import localFont from "next/font/local"
+
+// Font files can be colocated inside of `app`
+const cubic = localFont({
+  src: "./Cubic_11.woff2",
+  display: "swap",
+  variable: "--font-cubic",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NODE_ENV === "production" ? "https://moments.mugio.studio" : "http://localhost:3000"),
@@ -65,7 +73,7 @@ export default function RootLayout({
   const GA_ID = "G-K8RTFPVJ41"
 
   return (
-    <html lang="zh-TW" suppressHydrationWarning>
+    <html lang="zh-TW" className={`${cubic.variable} antialiased`} suppressHydrationWarning>
       <head>
         <StructuredData />
         {/* Google Analytics in head for verification */}
