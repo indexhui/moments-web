@@ -1,17 +1,110 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Box, Flex, Text, Image, IconButton, HStack } from "@chakra-ui/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FaChevronLeft, FaChevronRight, FaPlay, FaPause, FaCog } from "react-icons/fa"
-import { QuestionStat } from "./types"
-import { questionImages, questionDisplayNames, answerQuotes, AUTO_PLAY_INTERVAL, BAR_ANIMATION_DURATION } from "./config"
+import { QuestionStat, AnswerStat } from "./types"
+import {
+  questionImages,
+  questionDisplayNames,
+  answerQuotes,
+  questionAliases,
+  displayQuestions,
+  AUTO_PLAY_INTERVAL,
+  BAR_ANIMATION_DURATION,
+} from "./config"
+import { createClient } from "@/lib/supabase/client"
+import type { RealtimePostgresInsertPayload } from "@supabase/supabase-js"
 
 const MotionBox = motion.create(Box)
 
 interface StatsDisplayProps {
   stats: QuestionStat[]
 }
+
+// 資料庫記錄類型
+interface EventResponse {
+  id: number
+  question: string | null
+  answer: string | null
+  player_id: string | null
+  conversation_title: string | null
+  created_at: string
+}
+
+// 取得正規化的題目 key（處理別名）
+function normalizeQuestion(question: string): string {
+  return questionAliases[question] || question
+}
+
+// 處理原始資料，轉換成統計格式
+function processStats(
+  eventResponses: Array<{
+    question: string | null
+    answer: string | null
+  }>
+): QuestionStat[] {
+  const questionGroups = new Map<string, string[]>()
+
+  for (const response of eventResponses) {
+    if (!response.question || !response.answer) continue
+    const normalizedQuestion = normalizeQuestion(response.question)
+    const answers = questionGroups.get(normalizedQuestion) || []
+    answers.push(response.answer)
+    questionGroups.set(normalizedQuestion, answers)
+  }
+
+  const statsMap = new Map<string, QuestionStat>()
+
+  for (const [question, answers] of questionGroups) {
+    const totalResponses = answers.length
+    const answerCounts = new Map<string, number>()
+    for (const answer of answers) {
+      answerCounts.set(answer, (answerCounts.get(answer) || 0) + 1)
+    }
+
+    const answerStats: AnswerStat[] = Array.from(answerCounts.entries())
+      .map(([answer, count]) => ({
+        answer,
+        count,
+        percentage: Math.round((count / totalResponses) * 100),
+      }))
+      .sort((a, b) => b.count - a.count)
+
+    statsMap.set(question, {
+      question,
+      totalResponses,
+      answers: answerStats,
+    })
+  }
+
+  if (displayQuestions.length > 0) {
+    return displayQuestions.map((q) => statsMap.get(q)).filter((stat): stat is QuestionStat => stat !== undefined)
+  }
+
+  return Array.from(statsMap.values()).sort((a, b) => b.totalResponses - a.totalResponses)
+}
+
+// +1 動畫效果的資訊
+interface PlusOneEffect {
+  id: string
+  answer: string
+  questionIndex: number
+}
+
+// 佇列中的事件
+interface QueuedEvent {
+  id: string
+  question: string
+  answer: string
+  questionIndex: number
+}
+
+// +1 動畫間隔時間（毫秒）
+const PLUS_ONE_INTERVAL = 400
+// +1 動畫持續時間（毫秒）
+const PLUS_ONE_DURATION = 2000
 
 // 為每個選項分配顏色
 const COLORS = [
@@ -51,12 +144,14 @@ function AnswerRow({
   color,
   animate,
   index,
+  showPlusOne,
 }: {
   answer: string
   percentage: number
   color: string
   animate: boolean
   index: number
+  showPlusOne?: boolean
 }) {
   const [displayPercentage, setDisplayPercentage] = useState(0)
 
@@ -92,11 +187,33 @@ function AnswerRow({
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
       fontFamily="var(--font-cubic)"
+      position="relative"
     >
       <Flex justify="space-between" align="center">
-        <Text fontSize="20px" fontWeight="600" color="#333">
-          {answer}
-        </Text>
+        <Flex align="center" gap="8px" position="relative">
+          <Text fontSize="20px" fontWeight="600" color="#333">
+            {answer}
+          </Text>
+          {/* +1 動畫效果 */}
+          <AnimatePresence>
+            {showPlusOne && (
+              <MotionBox
+                initial={{ opacity: 1, y: 0, scale: 1 }}
+                animate={{ opacity: 0, y: -40, scale: 1.8 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                position="absolute"
+                left="100%"
+                ml="12px"
+                color={color}
+                fontWeight="700"
+                fontSize="24px"
+              >
+                +1
+              </MotionBox>
+            )}
+          </AnimatePresence>
+        </Flex>
         <Text fontSize="24px" fontWeight="700" color={color}>
           {displayPercentage}%
         </Text>
@@ -106,11 +223,156 @@ function AnswerRow({
   )
 }
 
-export function StatsDisplay({ stats }: StatsDisplayProps) {
+export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
   const [animateKey, setAnimateKey] = useState(0)
   const [showControls, setShowControls] = useState(false)
+  const [stats, setStats] = useState<QuestionStat[]>(initialStats)
+  const [plusOneEffect, setPlusOneEffect] = useState<PlusOneEffect | null>(null)
+
+  // 儲存所有原始資料，用於重新計算統計
+  const rawDataRef = useRef<Array<{ question: string | null; answer: string | null }>>([])
+
+  // 事件佇列
+  const eventQueueRef = useRef<QueuedEvent[]>([])
+  const isProcessingQueueRef = useRef(false)
+  const resumeAutoPlayTimerRef = useRef<NodeJS.Timeout | null>(null)
+
+  // 初始化原始資料
+  useEffect(() => {
+    // 從初始統計反推原始資料
+    const initialRawData: Array<{ question: string | null; answer: string | null }> = []
+    for (const stat of initialStats) {
+      for (const answerStat of stat.answers) {
+        for (let i = 0; i < answerStat.count; i++) {
+          initialRawData.push({
+            question: stat.question,
+            answer: answerStat.answer,
+          })
+        }
+      }
+    }
+    rawDataRef.current = initialRawData
+  }, [initialStats])
+
+  // 處理佇列中的事件
+  const processQueue = useCallback(() => {
+    if (isProcessingQueueRef.current || eventQueueRef.current.length === 0) {
+      return
+    }
+
+    isProcessingQueueRef.current = true
+
+    const processNextEvent = () => {
+      const event = eventQueueRef.current.shift()
+
+      if (!event) {
+        // 佇列處理完畢
+        isProcessingQueueRef.current = false
+
+        // 清除之前的恢復播放計時器
+        if (resumeAutoPlayTimerRef.current) {
+          clearTimeout(resumeAutoPlayTimerRef.current)
+        }
+
+        // 佇列清空後 3 秒恢復自動播放
+        resumeAutoPlayTimerRef.current = setTimeout(() => {
+          setIsPlaying(true)
+        }, 3000)
+
+        return
+      }
+
+      // 暫停自動播放
+      setIsPlaying(false)
+
+      // 清除恢復播放計時器（因為還有事件要處理）
+      if (resumeAutoPlayTimerRef.current) {
+        clearTimeout(resumeAutoPlayTimerRef.current)
+        resumeAutoPlayTimerRef.current = null
+      }
+
+      // 導向到該題目
+      setCurrentIndex(event.questionIndex)
+      setAnimateKey((prev) => prev + 1)
+
+      // 顯示 +1 效果
+      setPlusOneEffect({
+        id: event.id,
+        answer: event.answer,
+        questionIndex: event.questionIndex,
+      })
+
+      // 清除 +1 效果
+      setTimeout(() => {
+        setPlusOneEffect(null)
+      }, PLUS_ONE_DURATION)
+
+      // 處理下一個事件
+      setTimeout(processNextEvent, PLUS_ONE_INTERVAL)
+    }
+
+    processNextEvent()
+  }, [])
+
+  // Supabase realtime 訂閱
+  useEffect(() => {
+    const supabase = createClient()
+
+    const channel = supabase
+      .channel("event_responses_changes")
+      .on<EventResponse>(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "event_responses",
+        },
+        (payload: RealtimePostgresInsertPayload<EventResponse>) => {
+          console.log("[Realtime] 收到新資料:", payload.new)
+          const newRecord = payload.new
+          if (!newRecord.question || !newRecord.answer) return
+
+          // 將新資料加入原始資料
+          rawDataRef.current.push({
+            question: newRecord.question,
+            answer: newRecord.answer,
+          })
+
+          // 重新計算統計
+          const newStats = processStats(rawDataRef.current)
+          setStats(newStats)
+
+          // 找到對應的題目索引
+          const normalizedQuestion = normalizeQuestion(newRecord.question)
+          const questionIndex = newStats.findIndex((s) => s.question === normalizedQuestion)
+
+          if (questionIndex !== -1) {
+            // 加入佇列
+            eventQueueRef.current.push({
+              id: `${newRecord.id}-${Date.now()}`,
+              question: normalizedQuestion,
+              answer: newRecord.answer,
+              questionIndex,
+            })
+
+            // 開始處理佇列
+            processQueue()
+          }
+        }
+      )
+      .subscribe((status) => {
+        console.log("[Realtime] 訂閱狀態:", status)
+      })
+
+    return () => {
+      supabase.removeChannel(channel)
+      if (resumeAutoPlayTimerRef.current) {
+        clearTimeout(resumeAutoPlayTimerRef.current)
+      }
+    }
+  }, [processQueue])
 
   const currentStat = stats[currentIndex]
   const imageUrl = questionImages[currentStat?.question] || ""
@@ -271,6 +533,9 @@ export function StatsDisplay({ stats }: StatsDisplayProps) {
                       color={COLORS[index % COLORS.length]}
                       animate={true}
                       index={index}
+                      showPlusOne={
+                        plusOneEffect !== null && plusOneEffect.questionIndex === currentIndex && plusOneEffect.answer === answer.answer
+                      }
                     />
                   ))}
                 </Flex>

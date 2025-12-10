@@ -4,6 +4,7 @@
 // 例如 "EV_01_02" 和 "只剩下博愛座" 會合併成同一題
 export const questionAliases: Record<string, string> = {
   Entry_20_4: "只剩下博愛座",
+  Entry_2_8: "鬧鐘響了",
   // 可以繼續新增其他別名...
 }
 
