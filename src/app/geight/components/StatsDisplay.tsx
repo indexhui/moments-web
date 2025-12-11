@@ -191,7 +191,7 @@ function AnswerRow({
     >
       <Flex justify="space-between" align="center">
         <Flex align="center" gap="8px" position="relative">
-          <Text fontSize="20px" fontWeight="600" color="#333">
+          <Text fontSize="40px" fontWeight="600" color="#333">
             {answer}
           </Text>
           {/* +1 動畫效果 */}
@@ -434,6 +434,7 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
       }}
     >
       {/* 模糊白色背景容器 */}
+
       <Flex
         direction="row"
         h="calc(100vh - 188px)"
@@ -442,30 +443,32 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
         pt="21px"
         pb="40px"
         pl="60px"
-        pr="160px"
+        pr="60px"
       >
         {/* 左欄：iOS 試玩下載 */}
-        <Flex
-          direction="column"
-          align="center"
-          justify="center"
-          w="343px"
-          h="336px"
-          flexShrink={0}
-          mr="64px"
-          bg="rgba(255,255,255,1)"
-          borderRadius="12px"
-          p="16px"
-          my="auto"
-        >
-          <Text fontSize="24px" fontWeight="700" color="#333" fontFamily="var(--font-cubic)" mb="24px" textAlign="center">
-            iOS 試玩下載
-          </Text>
-          <Image src="/download.svg" alt="QR Code" w="231px" h="231px" />
+        <Flex direction="column">
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            w="343px"
+            flexShrink={0}
+            mr="64px"
+            bg="rgba(255,255,255,1)"
+            borderRadius="12px"
+            p="16px"
+            my="auto"
+          >
+            <Text fontSize="24px" fontWeight="700" color="#333" fontFamily="var(--font-cubic)" mb="24px" textAlign="center">
+              iOS 試玩下載
+            </Text>
+            <Image src="/download.svg" alt="QR Code" w="100%" />
+          </Flex>
+          <Image src="/moments_logo.svg" alt="QR Code" w="343px" />
         </Flex>
 
         {/* 中欄：設定圖片 */}
-        <Flex direction="column" align="center" justify="center" w="327px" flexShrink={0} mr="48px" h="100%" overflow="hidden">
+        <Flex direction="column" align="center" justify="center" flexShrink={0} mr="48px" h="100%" overflow="hidden">
           <AnimatePresence mode="wait">
             {imageUrl ? (
               <MotionBox
@@ -516,10 +519,10 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <Text fontSize="32px" fontWeight="700" color="white" fontFamily="var(--font-cubic)" lineHeight="1.4">
+                <Text fontSize="64px" fontWeight="700" color="white" fontFamily="var(--font-cubic)" lineHeight="1.4">
                   {questionDisplayNames[currentStat.question] || currentStat.question}
                 </Text>
-                <Text fontSize="16px" color="rgba(255,255,255,0.7)" mt="12px" fontFamily="var(--font-cubic)">
+                <Text fontSize="32px" color="rgba(255,255,255,0.7)" mt="6px" fontFamily="var(--font-cubic)">
                   共 {currentStat.totalResponses} 人回答
                 </Text>
               </MotionBox>
@@ -573,7 +576,7 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
                   return quote ? (
                     <Flex align="flex-start" gap="16px">
                       {/* 角色圖片 */}
-                      <Image src="/animals/beigo.png" alt="Beigo" w="80px" h="80px" objectFit="contain" flexShrink={0} />
+                      <Image src="/animals/beigo.png" alt="Beigo" w="160px" h="160px" objectFit="contain" flexShrink={0} />
                       {/* 對話氣泡 */}
                       <Box
                         position="relative"
@@ -588,10 +591,10 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
                           top: "20px",
                         }}
                       >
-                        <Text fontSize="14px" color="rgba(0,0,0,0.4)" fontFamily="var(--font-cubic)" mb="4px">
+                        <Text fontSize="28px" color="rgba(0,0,0,0.4)" fontFamily="var(--font-cubic)" mb="4px">
                           最多人選擇「{topAnswer}」
                         </Text>
-                        <Text fontSize="20px" fontWeight="600" color="#333" fontFamily="var(--font-cubic)" lineHeight="1.5">
+                        <Text fontSize="40px" fontWeight="600" color="#333" fontFamily="var(--font-cubic)" lineHeight="1.5">
                           {quote}
                         </Text>
                       </Box>
