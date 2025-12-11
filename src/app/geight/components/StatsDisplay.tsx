@@ -508,7 +508,7 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
         </Flex>
 
         {/* 右欄：題目、統計、吐槽語錄（垂直排列） */}
-        <Flex direction="column" flex="1" overflow="auto" justifyContent="space-between">
+        <Flex direction="column" flex="1" overflow="flow" justifyContent="space-between">
           {/* 題目 */}
           <Box bg="#987455" p="24px" mb="28px" borderRadius="12px">
             <AnimatePresence mode="wait">
@@ -519,10 +519,10 @@ export function StatsDisplay({ stats: initialStats }: StatsDisplayProps) {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <Text fontSize="64px" fontWeight="700" color="white" fontFamily="var(--font-cubic)" lineHeight="1.4">
+                <Text fontSize="60px" fontWeight="700" color="white" fontFamily="var(--font-cubic)" lineHeight="1.4">
                   {questionDisplayNames[currentStat.question] || currentStat.question}
                 </Text>
-                <Text fontSize="32px" color="rgba(255,255,255,0.7)" mt="6px" fontFamily="var(--font-cubic)">
+                <Text fontSize="28px" color="rgba(255,255,255,0.7)" mt="6px" fontFamily="var(--font-cubic)">
                   共 {currentStat.totalResponses} 人回答
                 </Text>
               </MotionBox>
